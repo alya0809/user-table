@@ -81,11 +81,17 @@ const App = () => {
   // Обработчик сортировки по ключу
   const handleSort = (key) => {
     let direction = 'ascending';
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending';
+    if (sortConfig.key === key) {
+      if (sortConfig.direction === 'ascending') {
+        direction = 'descending';
+      } else if (sortConfig.direction === 'descending') {
+        // Если текущее направление сортировки - 'descending', сбрасываем сортировку
+        key = null;
+      }
     }
     setSortConfig({ key, direction });
   };
+  
 
   // Вычисление отсортированных пользователей
   const sortedUsers = React.useMemo(() => {
