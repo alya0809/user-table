@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/UserTable.css';
 
 const UserTable = ({ users, onRowClick, onSort, sortConfig }) => {
+  // Функция для получения индикатора сортировки (стрелка вверх, вниз или двусторонняя)
   const getSortIndicator = (key) => {
     if (sortConfig.key === key) {
       return sortConfig.direction === 'ascending' ? '↑' : '↓';
@@ -11,9 +12,9 @@ const UserTable = ({ users, onRowClick, onSort, sortConfig }) => {
 
   return (
     <div className="table-container">
+      {/* Если нет пользователей, отображается сообщение "Ничего не найдено" */}
       {!users.length ? (
-        <p className="no-results">Ничего не найдено</p>
-      ) : (
+        <p className="no-results">Ничего не найдено</p>) : (
         <table className='table'>
           <thead>
             <tr>
@@ -25,6 +26,7 @@ const UserTable = ({ users, onRowClick, onSort, sortConfig }) => {
             </tr>
           </thead>
           <tbody>
+            {/* Перебираем пользователей и создаем строки таблицы */}
             {users.map(user => (
               <tr key={user.id} onClick={() => onRowClick(user)}>
                 <td>{user.firstName} {user.lastName}</td>
